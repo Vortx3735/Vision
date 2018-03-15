@@ -7,10 +7,10 @@
 
 package org.usfirst.frc.team3735.robot;
 
+import org.usfirst.frc.team3735.robot.subsystems.Jevois;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
-import org.usfirst.frc.team3735.robot.subsystems.JevoisCam;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,18 +21,14 @@ import org.usfirst.frc.team3735.robot.subsystems.JevoisCam;
  */
 public class Robot extends TimedRobot {
 	
-	public static JevoisCam cam1;
+	public static Jevois cam1;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
-		//CameraServer.getInstance().startAutomaticCapture();
-		//CameraServer.getInstance().getVideo();
-		cam1 = new JevoisCam(0);
-		cam1.checkCommand("ping");
-		System.out.println("robot init");
+		cam1 = new Jevois();
 	}
 
 	@Override
@@ -47,7 +43,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-
+		cam1.setUpVision();
 	}
 
 	/**
@@ -55,12 +51,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		cam1.refresh();
 		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void teleopInit() {
-
 	}
 
 	/**
@@ -68,7 +64,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		String s = cam1.readString();
+		
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3735.robot.subsystems;
+package org.usfirst.frc.team3735.robot.jamal;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
